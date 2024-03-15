@@ -5,7 +5,9 @@
 package lab.pkg9p2_hectorrivera;
 
 import java.io.File;
+import java.util.Date;
 import javax.swing.JFileChooser;
+import javax.swing.JOptionPane;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
 /**
@@ -19,6 +21,10 @@ public class main extends javax.swing.JFrame {
      */
     public main() {
         initComponents();
+        jButton_guardar.setEnabled(false);
+        fecha date = new fecha(jLabel_HoraAurita, jLabel_fechaHoy);
+        date.start();
+
     }
 
     /**
@@ -34,15 +40,15 @@ public class main extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
+        jLabel_fechaHoy = new javax.swing.JLabel();
+        jLabel_HoraAurita = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jButton_subir = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
+        jTextArea_file = new javax.swing.JTextArea();
         jProgressBar_upload = new javax.swing.JProgressBar();
         jLabel6 = new javax.swing.JLabel();
-        jButton2 = new javax.swing.JButton();
+        jButton_guardar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -61,11 +67,11 @@ public class main extends javax.swing.JFrame {
         jLabel3.setForeground(new java.awt.Color(0, 0, 0));
         jLabel3.setText("Hora Actual:");
 
-        jLabel4.setFont(new java.awt.Font("Segoe UI Black", 0, 14)); // NOI18N
-        jLabel4.setText("-");
+        jLabel_fechaHoy.setFont(new java.awt.Font("Segoe UI Black", 0, 14)); // NOI18N
+        jLabel_fechaHoy.setText("-");
 
-        jLabel5.setFont(new java.awt.Font("Segoe UI Black", 0, 14)); // NOI18N
-        jLabel5.setText("-");
+        jLabel_HoraAurita.setFont(new java.awt.Font("Segoe UI Black", 0, 14)); // NOI18N
+        jLabel_HoraAurita.setText("-");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -76,8 +82,8 @@ public class main extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, 120, Short.MAX_VALUE)
                     .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jLabel_fechaHoy, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel_HoraAurita, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(14, 14, 14))
             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
@@ -91,11 +97,11 @@ public class main extends javax.swing.JFrame {
                 .addGap(143, 143, 143)
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel4)
+                .addComponent(jLabel_fechaHoy)
                 .addGap(20, 20, 20)
                 .addComponent(jLabel3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel5)
+                .addComponent(jLabel_HoraAurita)
                 .addContainerGap(208, Short.MAX_VALUE))
             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel1Layout.createSequentialGroup()
@@ -115,15 +121,20 @@ public class main extends javax.swing.JFrame {
             }
         });
 
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        jScrollPane1.setViewportView(jTextArea1);
+        jTextArea_file.setColumns(20);
+        jTextArea_file.setRows(5);
+        jScrollPane1.setViewportView(jTextArea_file);
 
         jLabel6.setFont(new java.awt.Font("Tw Cen MT Condensed Extra Bold", 0, 24)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(0, 0, 0));
         jLabel6.setText("Subir archivos");
 
-        jButton2.setText("Guardar");
+        jButton_guardar.setText("Guardar");
+        jButton_guardar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton_guardarMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -136,7 +147,7 @@ public class main extends javax.swing.JFrame {
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 313, Short.MAX_VALUE)
                     .addComponent(jButton_subir, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jButton_guardar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(118, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
@@ -151,7 +162,7 @@ public class main extends javax.swing.JFrame {
                 .addGap(28, 28, 28)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton2)
+                .addComponent(jButton_guardar)
                 .addGap(42, 42, 42))
         );
 
@@ -163,10 +174,27 @@ public class main extends javax.swing.JFrame {
     private void jButton_subirMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton_subirMouseClicked
         // TODO add your handling code here:
         jProgressBar_upload.setValue(0);
-        txt = new adminTextFile(chooseTXT());
-        txt.readFile();
-        barraProgreso progreso = new barraProgreso(jProgressBar_upload, jTextArea1, txt.getTxt());
+        String filepath = chooseTXT();
+        if (filepath != null) {
+            txt = new adminTextFile(filepath);
+            txt.readFile();
+            barraProgreso progreso = new barraProgreso(jProgressBar_upload, jTextArea_file, txt.getTxt());
+            progreso.start();
+            jButton_guardar.setEnabled(true);
+        }
+
     }//GEN-LAST:event_jButton_subirMouseClicked
+
+    private void jButton_guardarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton_guardarMouseClicked
+        // TODO add your handling code here:
+        try {
+            txt.setTxt(jTextArea_file.getText());
+            txt.addTofile();
+            
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Suba un archivo");
+        }
+    }//GEN-LAST:event_jButton_guardarMouseClicked
 
     /**
      * @param args the command line arguments
@@ -204,31 +232,32 @@ public class main extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton_guardar;
     private javax.swing.JButton jButton_subir;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel_HoraAurita;
+    private javax.swing.JLabel jLabel_fechaHoy;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JProgressBar jProgressBar_upload;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextArea jTextArea1;
+    private javax.swing.JTextArea jTextArea_file;
     // End of variables declaration//GEN-END:variables
     adminTextFile txt;
-    public String chooseTXT(){
+
+    public String chooseTXT() {
         JFileChooser chooser = new JFileChooser();
         FileNameExtensionFilter txtFilter = new FileNameExtensionFilter("text Files", "txt");
-        chooser.setFileSelectionMode(JFileChooser.FILES_AND_DIRECTORIES);
+        chooser.setFileSelectionMode(JFileChooser.FILES_ONLY);
         chooser.setFileFilter(txtFilter);
         int selection = chooser.showOpenDialog(this);
-        
+
         if (selection == JFileChooser.APPROVE_OPTION) {
             return chooser.getSelectedFile().getAbsolutePath();
-        }else{
+        } else {
             return null;
         }
     }
