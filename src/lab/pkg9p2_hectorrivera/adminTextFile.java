@@ -25,13 +25,23 @@ public class adminTextFile {
         this.filetxt = new File(filepath);
     }
 
-    public File getRom() {
+    public File getFiletxt() {
         return filetxt;
     }
 
-    public void setRom(File rom) {
-        this.filetxt = rom;
+    public void setFiletxt(File filetxt) {
+        this.filetxt = filetxt;
     }
+
+    public String getTxt() {
+        return txt;
+    }
+
+    public void setTxt(String txt) {
+        this.txt = txt;
+    }
+
+    
 
     
     public void addTofile() throws IOException {

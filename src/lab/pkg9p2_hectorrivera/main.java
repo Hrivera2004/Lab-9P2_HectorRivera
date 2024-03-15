@@ -164,7 +164,8 @@ public class main extends javax.swing.JFrame {
         // TODO add your handling code here:
         jProgressBar_upload.setValue(0);
         txt = new adminTextFile(chooseTXT());
-        
+        txt.readFile();
+        barraProgreso progreso = new barraProgreso(jProgressBar_upload, jTextArea1, txt.getTxt());
     }//GEN-LAST:event_jButton_subirMouseClicked
 
     /**
@@ -218,7 +219,6 @@ public class main extends javax.swing.JFrame {
     private javax.swing.JTextArea jTextArea1;
     // End of variables declaration//GEN-END:variables
     adminTextFile txt;
-    
     public String chooseTXT(){
         JFileChooser chooser = new JFileChooser();
         FileNameExtensionFilter txtFilter = new FileNameExtensionFilter("text Files", "txt");
