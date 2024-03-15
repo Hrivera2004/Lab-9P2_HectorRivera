@@ -127,7 +127,7 @@ public class main extends javax.swing.JFrame {
 
         jLabel6.setFont(new java.awt.Font("Tw Cen MT Condensed Extra Bold", 0, 24)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel6.setText("Subir archivos");
+        jLabel6.setText("Borroa cloud");
 
         jButton_guardar.setText("Guardar");
         jButton_guardar.addMouseListener(new java.awt.event.MouseAdapter() {
