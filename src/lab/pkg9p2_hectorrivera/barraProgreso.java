@@ -1,5 +1,6 @@
 package lab.pkg9p2_hectorrivera;
 
+import javax.swing.JOptionPane;
 import javax.swing.JProgressBar;
 import javax.swing.JTextArea;
 
@@ -31,7 +32,6 @@ public class barraProgreso extends Thread {
     public void run() {
         while (vive) {
                 progBar.setValue(progBar.getValue() + 1);
-                //activar y modificar propiedad stringPainted para que esto funciones
                 if (progBar.getValue() == 100) {
                     vive = false;
                 }
@@ -40,7 +40,9 @@ public class barraProgreso extends Thread {
             } catch (InterruptedException ex) {
             }
         }
+        
         text.setText(string);
+        JOptionPane.showMessageDialog(null, "File finished loading");
     }
 
 }

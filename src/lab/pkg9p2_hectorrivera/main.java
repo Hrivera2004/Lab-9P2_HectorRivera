@@ -181,6 +181,8 @@ public class main extends javax.swing.JFrame {
             barraProgreso progreso = new barraProgreso(jProgressBar_upload, jTextArea_file, txt.getTxt());
             progreso.start();
             jButton_guardar.setEnabled(true);
+        } else {
+            JOptionPane.showMessageDialog(this, "No eligio uno valido");
         }
 
     }//GEN-LAST:event_jButton_subirMouseClicked
@@ -190,7 +192,7 @@ public class main extends javax.swing.JFrame {
         try {
             txt.setTxt(jTextArea_file.getText());
             txt.addTofile();
-            
+            JOptionPane.showMessageDialog(this, "guardado");
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, "Suba un archivo");
         }
@@ -249,16 +251,22 @@ public class main extends javax.swing.JFrame {
     adminTextFile txt;
 
     public String chooseTXT() {
-        JFileChooser chooser = new JFileChooser();
-        FileNameExtensionFilter txtFilter = new FileNameExtensionFilter("text Files", "txt");
-        chooser.setFileSelectionMode(JFileChooser.FILES_ONLY);
-        chooser.setFileFilter(txtFilter);
-        int selection = chooser.showOpenDialog(this);
+        try {
+            JFileChooser chooser = new JFileChooser();
+            FileNameExtensionFilter txtFilter = new FileNameExtensionFilter("text Files", "txt");
+            chooser.setFileSelectionMode(JFileChooser.FILES_ONLY);
+            chooser.setFileFilter(txtFilter);
+            int selection = chooser.showOpenDialog(this);
 
-        if (selection == JFileChooser.APPROVE_OPTION) {
-            return chooser.getSelectedFile().getAbsolutePath();
-        } else {
-            return null;
+            if (selection == JFileChooser.APPROVE_OPTION) {
+                return chooser.getSelectedFile().getAbsolutePath();
+            } else {
+                return null;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            JOptionPane.showMessageDialog(this, "Selection failed");
         }
+        return null;
     }
 }
